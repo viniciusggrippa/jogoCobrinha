@@ -1,9 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+}
+
 body {
     height: 95vh;
     width: 95%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
     color: rgb(0, 97, 0)
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 512px;
+    width: 512px;
+    align-items: center;
+
+}
+
+h1 {
+    margin-bottom: 100px;
+    color: black;
+    font-size: 48px;
+}
+
+
+#meusPontos {
+    color: black;
+    font-size: 24px;
+    margin-bottom: 30px;
+    display: none;
+}
+
+canvas {
+    display: none;
+}
+
+button {
+    width: 100%;
+    padding: 20px;
+    font-size: 24px;
+    border: none;
+    color: white;
+    background-color: black;
+    cursor: pointer;
 }

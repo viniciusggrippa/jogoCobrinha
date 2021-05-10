@@ -2,6 +2,8 @@ let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
 let snake = [];
+let pontuacao = 0;
+
 snake[0] = {
     x: 8 * box,
     y: 8 * box
@@ -12,14 +14,20 @@ let food = {
     y: Math.floor(Math.random() * 15 + 1) * box
 }
 
+function carregaJogo() {
+    document.getElementById("snake").style.display = "block";
+    document.getElementById("meusPontos").style.display = "block";
+    document.getElementById("inicioJogo").style.display = "none";
+}
+
 function criarBG() {
-    context.fillStyle = "lightgreen";                       //Cor de preenchimento do BG
+    context.fillStyle = "black";                       //Cor de preenchimento do BG
     context.fillRect(0, 0, 16 * box, 16 * box);             //Tamanho do objeto
 }
 
 function criarCobrinha() {
     for(i = 0; i < snake.length; i++) {
-        context.fillStyle = "green";
+        context.fillStyle = "white";
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
 }
@@ -48,7 +56,8 @@ function iniciarJogo() {
     for(i = 1; i < snake.length; i++){
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
             clearInterval(jogo);
-            alert('Game Over :(');
+            alert('Game Over :(\nSua pontuação é' + pontuacao);
+            document.location.reload();            
         }
     }
     
@@ -64,11 +73,13 @@ function iniciarJogo() {
     if(direction == "up") snakeY -= box;
     if(direction == "down") snakeY += box;
 
-    if(snakeX != food.x || snakeY != food.y) {
+    if(snakeX != food.x || snakeY != food.y) {       
         snake.pop();
     }else {
         food.x = Math.floor(Math.random() * 15 + 1) * box;
         food.y = Math.floor(Math.random() * 15 + 1) * box;
+        pontuacao = pontuacao + 10;
+        document.getElementById("pontos").innerHTML = pontuacao;
     }
 
     let newHead = {
@@ -80,3 +91,4 @@ function iniciarJogo() {
 }
 
 let jogo = setInterval(iniciarJogo, 100);
+
